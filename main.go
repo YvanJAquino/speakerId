@@ -25,7 +25,7 @@ func GetEnvDefault(env, def string) string {
 
 var (
 	parent = context.Background()
-	db     = "projects/vocal-etching-343420/instances/speaker-id/database/speaker-id"
+	db     = "projects/vocal-etching-343420/instances/speaker-id/databases/speaker-id"
 	PORT   = GetEnvDefault("PORT", "8081")
 )
 
