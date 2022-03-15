@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	cloud.google.com/go/spanner v1.30.0
-	github.com/YvanJAquino/dfcx-sfdc-oauth2 v0.0.0-20220314151122-6f103dad3545
+	github.com/YvanJAquino/dfcx-sfdc-oauth2 v0.0.3
 	github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13
 )
 

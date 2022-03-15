@@ -54,8 +54,8 @@ dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
-github.com/YvanJAquino/dfcx-sfdc-oauth2 v0.0.0-20220314151122-6f103dad3545 h1:UDpvHRt/VQbm/Lv3PjfcFQpjAPqC++bPOvVKZDnXnKQ=
-github.com/YvanJAquino/dfcx-sfdc-oauth2 v0.0.0-20220314151122-6f103dad3545/go.mod h1:QNnjb/aytY1uMLzMz+DonFCKgLbcXB+YTd6sUE72umE=
+github.com/YvanJAquino/dfcx-sfdc-oauth2 v0.0.3 h1:99FwVbOSQ142q7/F5RAWYUCV3CP5Q3tEpv1IohE/DhE=
+github.com/YvanJAquino/dfcx-sfdc-oauth2 v0.0.3/go.mod h1:QNnjb/aytY1uMLzMz+DonFCKgLbcXB+YTd6sUE72umE=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/census-instrumentation/opencensus-proto v0.3.0 h1:t/LhUZLVitR1Ow2YOnduCsavhwFUklBMoGVYUCqmCqk=
