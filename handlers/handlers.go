@@ -10,7 +10,8 @@ import (
 	"strings"
 
 	"cloud.google.com/go/spanner"
-	"github.com/YvanJAquino/dfcx-sfdc-oauth2/dfcx"
+	// "github.com/YvanJAquino/dfcx-sfdc-oauth2/dfcx"
+	dfcx "github.com/yaq-cc/go-dfcx-webhooks"
 	farm "github.com/dgryski/go-farm"
 )
 
@@ -125,7 +126,7 @@ func (h *SpeakerIdHandler) GetSpeakerIdsHandler(w http.ResponseWriter, r *http.R
 	if len(gcpResourceNames) == 0 {
 		return
 	} else {
-		params := make(map[string]string)
+		params := make(map[string]interface{})
 		params["speakerIds"] = strings.Join(gcpResourceNames, ", ")
 		resp := &dfcx.WebhookResponse{
 			SessionInfo: &dfcx.SessionInfo{
@@ -146,18 +147,24 @@ func (h *SpeakerIdHandler) RegisterSpeakerIdsHandler(w http.ResponseWriter, r *h
 	callerId := telephony["caller_id"]
 	phoneData := h.GetAccountsByPhoneNumber(r.Context(), callerId)
 	accountId := phoneData[0].AccountId
-	newSpeakerId := wh.SessionInfo.Parameters["new-speaker-id"]
+	reqParams := wh.SessionInfo.Parameters
+
+	newSpeakerIdVal := reqParams["new-speaker-id"]
+	newSpeakerId, ok := newSpeakerIdVal.(string)
+	if !ok {
+		fmt.Println("AssertionError")
+	}
 	err = h.RegisterNewSpeakerId(r.Context(), newSpeakerId, accountId)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+	params := make(map[string]interface{})
+	params["speakerIdRegistered"] = true
+	params["userAuthenticated"] = true
 	resp := &dfcx.WebhookResponse{
 		SessionInfo: &dfcx.SessionInfo{
-			Parameters: map[string]string{
-				"speakerIdRegistered": "true",
-				"userAuthenticated":   "true",
-			},
+			Parameters: params,
 		},
 	}
 	resp.Respond(w)
@@ -185,8 +192,8 @@ func (h *SpeakerIdHandler) VerifyPinNumber(w http.ResponseWriter, r *http.Reques
 	}
 	phData := h.GetAccountsByPhoneNumber(r.Context(), ph)
 	acctPin := phData[0].Accounts[0].Pin
-	params := make(map[string]string)
-	params["userAuthenticated"] = strconv.FormatBool(acctPin == userPin)
+	params := make(map[string]interface{})
+	params["userAuthenticated"] = acctPin == userPin
 	resp := &dfcx.WebhookResponse{
 		SessionInfo: &dfcx.SessionInfo{
 			Parameters: params,
